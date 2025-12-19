@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scripts</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+    <div class="page-content">
+
+        <!-- NAV -->
+        <nav>
+            <a href="index.html">Inicio</a>
+            <a href="resources.html">Recursos</a>
+            <a href="scripts.html">Scripts</a>
+            <a href="about.html">Sobre mí</a>
+        </nav>
+
+        <!-- HEADER -->
+        <header>
+            <h1>Scripts en Python</h1>
+            <p style="color: var(--muted); margin-top:4px;">
+                Herramientas para automatizar tareas de modding
+            </p>
+        </header>
+
+        <!-- CONTENIDO -->
+        <section class="resources">
+            <div class="card-grid" id="scripts-container">
+                <!-- Cards generadas desde JSON -->
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        © 2025 CharlyModding
+    </footer>
+
+    <!-- SCRIPT -->
+    <script>
+        fetch("assets/data/scripts.json")
+            .then(res => res.json())
+            .then(data => {
+                const container = document.getElementById("scripts-container");
+
+                data.scripts.forEach(script => {
+                    const card = document.createElement("div");
+                    card.className = "card";
+
+                    card.innerHTML = `
+                        <h3>${script.title}</h3>
+
+                        <p style="color: var(--muted); font-size: 0.95rem; line-height: 1.4;">
+                            ${script.description}
+                        </p>
+
+                        <div style="
+                            margin-top:16px;
+                            display:flex;
+                            justify-content:center;
+                            gap:12px;
+                            flex-wrap:wrap;
+                        ">
+                            <a href="#"
+                               class="download-btn"
+                               data-url="${script.download_url}">
+                               Descargar
+                            </a>
+
+                            <a href="${script.view_url}"
+                               target="_blank"
+                               class="download-btn">
+                               Ver código
+                            </a>
+                        </div>
+                    `;
+
+                    container.appendChild(card);
+                });
+
+                // Descargar usando fetch + blob
+                document.querySelectorAll(".download-btn[data-url]").forEach(btn => {
+                    btn.addEventListener("click", (e) => {
+                        e.preventDefault();
+
+                        const url = btn.dataset.url;
+                        const filename = url.split("/").pop();
+
+                        fetch(url)
+                            .then(res => {
+                                if (!res.ok) throw new Error("Error descargando archivo");
+                                return res.blob();
+                            })
+                            .then(blob => {
+                                const a = document.createElement("a");
+                                a.href = URL.createObjectURL(blob);
+                                a.download = filename;
+                                document.body.appendChild(a);
+                                a.click();
+                                a.remove();
+                                URL.revokeObjectURL(a.href);
+                            })
+                            .catch(err => {
+                                alert("No se pudo descargar el archivo");
+                                console.error(err);
+                            });
+                    });
+                });
+            })
+            .catch(err => {
+                console.error("Error cargando scripts.json:", err);
+            });
+    </script>
+
+</body>
+
+</html>

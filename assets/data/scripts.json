@@ -1,0 +1,10 @@
+{
+    "scripts": [
+        {
+            "title": "Previsualizar animación de items",
+            "description": "Script en Python para previsualizar animaciones de items antes de integrarlas al mod.",
+            "download_url": "https://raw.githubusercontent.com/idarkcharly/charlymodding-tools/main/item_animation_preview.py",
+            "view_url": "https://github.com/idarkcharly/charlymodding-tools/blob/main/item_animation_preview.py"
+        }
+    ]
+}
