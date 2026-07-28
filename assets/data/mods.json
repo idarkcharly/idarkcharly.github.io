@@ -1,0 +1,10 @@
+{
+    "mods": [
+        {
+            "title": "AutoRun Forge",
+            "description": "Activa el movimiento automático con un solo botón y personaliza su funcionamiento desde un menú integrado en el juego.",
+            "url": "https://github.com/idarkcharly/AutoRun-Forge",
+            "image": "assets/img/autorun_001.png"
+        }
+    ]
+}

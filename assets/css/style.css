@@ -5,21 +5,51 @@
     --accent2: #c50010;
     --text: #f2f2f2;
     --muted: #b5b5b5;
+    --card: #111111;
+    --card-border: #242424;
+    --focus: #ffd166;
+    --content-width: 1120px;
 }
 
 html,
 body {
     height: 100%;
     font-size: 18px;
+    scroll-behavior: smooth;
 }
 
 body {
     margin: 0;
     font-family: 'Inter', sans-serif;
+    line-height: 1.55;
     background: var(--bg);
     color: var(--text);
     display: flex;
     flex-direction: column;
+}
+
+.skip-link {
+    position: absolute;
+    left: 16px;
+    top: -60px;
+    z-index: 100;
+    padding: 10px 14px;
+    background: var(--focus);
+    color: #111;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+    top: 16px;
+}
+
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 3px;
 }
 
 .page-content {
@@ -37,6 +67,7 @@ nav {
     display: flex;
     justify-content: center;
     gap: 26px;
+    flex-wrap: wrap;
     z-index: 10;
     box-shadow: 0 4px 18px rgba(0, 0, 0, 0.6);
 }
@@ -48,16 +79,21 @@ nav a {
     padding: 8px 14px;
     border-radius: 8px;
     transition: 0.2s;
+    white-space: nowrap;
 }
 
 nav a:hover {
     background: var(--accent1);
 }
 
+nav a[aria-current="page"] {
+    background: var(--accent2);
+}
+
 /* ---------------- HEADER ---------------- */
 
 header {
-    padding: 10px 20px;
+    padding: 28px 20px 24px;
     text-align: center;
     background: linear-gradient(135deg, rgba(142, 15, 28, 0.35), rgba(178, 38, 50, 0.28));
 }
@@ -74,6 +110,7 @@ header h1 {
     margin-top: 18px;
     font-size: 2.6rem;
     color: #ffffff;
+    line-height: 1.1;
 }
 
 header p {
@@ -85,7 +122,7 @@ header p {
 .resources,
 .about,
 .about-section {
-    max-width: 900px;
+    max-width: var(--content-width);
     margin: 40px auto;
     padding: 0 20px;
     text-align: center;
@@ -116,14 +153,16 @@ header p {
     max-width: 600px;
     margin: 0 auto;
     aspect-ratio: 16/9;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
 }
 
 .video-section h2 {
     font-size: 1.8rem;
     margin-bottom: 20px;
     text-align: center;
-
-    color: #726a6a;
+    color: #d1c7c7;
 }
 
 .video-section .buttons {
@@ -132,6 +171,7 @@ header p {
     display: flex;
     justify-content: center;
     gap: 18px;
+    flex-wrap: wrap;
 }
 
 .video-wrap iframe {
@@ -201,21 +241,69 @@ header p {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 22px;
+    align-items: stretch;
 }
 
 .card {
-    background: #111;
+    background: linear-gradient(180deg, #141414, #101010);
     padding: 18px;
     border-radius: 12px;
-    border: 1px solid #222;
+    border: 1px solid var(--card-border);
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
     text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.mod-card-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: 10px;
+    margin-bottom: 14px;
+    background: #0c0c0c;
+    border: 1px solid #222;
+}
+
+.mod-card-image img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
 }
 
 .card h3 {
     margin: 0 0 14px;
     color: #ffffff;
+    line-height: 1.2;
 
+}
+
+.card-description {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.state-message {
+    margin: 0;
+    padding: 18px;
+    color: var(--muted);
+    text-align: center;
+    border: 1px dashed #2d2d2d;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.card-actions {
+    margin-top: auto;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding-top: 16px;
 }
 
 /* ----------- SPAN Y FILAS - Recursos ----------- */
@@ -226,18 +314,20 @@ header p {
     justify-content: space-between;
     padding: 14px 0;
     border-top: 1px solid #ffffff2e;
+    gap: 12px;
 
 
 }
 
 .card .resource-item span {
     font-size: 1rem;
-    /* más grande */
     font-weight: 600;
-    /* más fuerte */
     color: #ffffff;
-    /* más blanco */
     letter-spacing: 0.3px;
+}
+
+.card .resource-item a {
+    flex-shrink: 0;
 }
 
 /* ---------------- FOOTER ---------------- */
@@ -249,4 +339,54 @@ footer {
     color: var(--muted);
     background: var(--bg2);
     flex-shrink: 0;
+}
+
+main {
+    display: block;
+}
+
+@media (max-width: 860px) {
+    body {
+        font-size: 16px;
+    }
+
+    nav {
+        gap: 10px;
+        padding: 12px 14px;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+
+    .resources,
+    .about,
+    .about-section {
+        margin: 28px auto;
+        padding: 0 16px;
+    }
+}
+
+@media (max-width: 640px) {
+    .video-section .buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .btn,
+    .download-btn {
+        justify-content: center;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .card .resource-item {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .card .resource-item a {
+        width: 100%;
+        justify-content: center;
+    }
 }

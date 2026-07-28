@@ -4,20 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio</title>
+    <meta name="description" content="CharlyModding: recursos, scripts y mods para aprender a crear mods de Minecraft desde cero.">
+    <meta name="theme-color" content="#7c000c">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="CharlyModding">
+    <meta property="og:description" content="Recursos, scripts y mods para crear contenido de Minecraft.">
+    <meta property="og:url" content="https://charlymodding.xyz/">
+    <title>CharlyModding | Inicio</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/site.js" defer></script>
 </head>
 
 <body>
 
+    <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
+
     <nav>
         <a href="index.html">Inicio</a>
         <a href="resources.html">Recursos</a>
+        <a href="mods.html">Mods</a>
         <a href="scripts.html">Scripts</a>
         <a href="about.html">Sobre mí</a>
     </nav>
 
+    <main id="main-content">
     <header>
         <img src="assets/img/logo.jpg" alt="Logo CharlyModding">
         <h1>Charly1307</h1>
@@ -27,20 +38,23 @@
     <section class="video-section">
         <h2>Video Reciente</h2>
         <div class="video-wrap">
-            <iframe src="https://www.youtube-nocookie.com/embed/zHLS6TpIOxM" title="Video Reciente"
+            <iframe src="https://www.youtube-nocookie.com/embed/zHLS6TpIOxM" title="Video reciente de CharlyModding"
+                loading="lazy" referrerpolicy="strict-origin-when-cross-origin"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowfullscreen></iframe>
         </div>
 
         <div class="buttons">
-            <a class="btn" href="https://www.youtube.com/@Charly1307" target="_blank">Mi Canal</a>
-            <a class="btn" href="https://discord.gg/EEb2nmpytD">Discord</a>
+            <a class="btn" href="https://www.youtube.com/@Charly1307" target="_blank" rel="noopener noreferrer">Mi Canal</a>
+            <a class="btn" href="https://discord.gg/EEb2nmpytD" target="_blank" rel="noopener noreferrer">Discord</a>
             <a class="btn" href="resources.html">Recursos</a>
         </div>
     </section>
 
+    </main>
+
     <footer>
-        © 2025 CharlyModding
+        <span data-year></span> CharlyModding
     </footer>
 
 </body>

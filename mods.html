@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mods creados por CharlyModding con tarjetas, imágenes y enlaces a GitHub.">
+    <meta name="theme-color" content="#7c000c">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="CharlyModding | Mods">
+    <meta property="og:description" content="Mods creados por CharlyModding y publicados en GitHub.">
+    <meta property="og:url" content="https://charlymodding.xyz/mods.html">
+    <title>CharlyModding | Mods</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/site.js" defer></script>
+</head>
+
+<body>
+
+    <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
+
+    <div class="page-content">
+
+        <nav>
+            <a href="index.html">Inicio</a>
+            <a href="resources.html">Recursos</a>
+            <a href="mods.html">Mods</a>
+            <a href="scripts.html">Scripts</a>
+            <a href="about.html">Sobre mí</a>
+        </nav>
+
+        <main id="main-content">
+        <header>
+            <h1>Mis Mods</h1>
+            <p style="color: var(--muted); margin-top:4px;">Proyectos que he creado y publicado en GitHub</p>
+        </header>
+
+        <section class="resources">
+            <div class="card-grid" id="mods-container" aria-live="polite">
+                <!-- Cards generadas desde JSON -->
+            </div>
+        </section>
+
+        </main>
+
+    </div>
+
+    <footer>
+        <span data-year></span> CharlyModding
+    </footer>
+
+    <script>
+        fetch("assets/data/mods.json")
+            .then(res => res.json())
+            .then(data => {
+                const container = document.getElementById("mods-container");
+
+                if (!Array.isArray(data.mods) || data.mods.length === 0) {
+                    container.innerHTML = '<p class="state-message">Todavía no hay mods publicados.</p>';
+                    return;
+                }
+
+                data.mods.forEach(mod => {
+                    const card = document.createElement("div");
+                    card.className = "card";
+
+                    const imageWrap = document.createElement("div");
+                    imageWrap.className = "mod-card-image";
+
+                    const image = document.createElement("img");
+                    image.src = mod.image;
+                    image.alt = mod.image_alt || mod.title;
+                    image.loading = "lazy";
+
+                    const title = document.createElement("h3");
+                    title.textContent = mod.title;
+
+                    const description = document.createElement("p");
+                    description.className = "card-description";
+                    description.textContent = mod.description;
+
+                    const actions = document.createElement("div");
+                    actions.className = "card-actions";
+
+                    const link = document.createElement("a");
+                    link.href = mod.url;
+                    link.target = "_blank";
+                    link.rel = "noopener noreferrer";
+                    link.className = "download-btn";
+                    link.textContent = "Ir a";
+
+                    imageWrap.appendChild(image);
+                    actions.appendChild(link);
+                    card.append(imageWrap, title, description, actions);
+
+                    container.appendChild(card);
+                });
+            })
+            .catch(err => {
+                const container = document.getElementById("mods-container");
+                container.innerHTML = '<p class="state-message">No fue posible cargar los mods en este momento.</p>';
+                console.error("Error cargando mods.json:", err);
+            });
+    </script>
+
+</body>
+
+</html>
