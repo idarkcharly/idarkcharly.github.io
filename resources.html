@@ -14,9 +14,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
     <script src="assets/js/site.js" defer></script>
+    <script src="assets/js/legal-buddy.js" defer></script>
 </head>
 
-<body>
+<body class="page-resources">
 
     <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
 
@@ -327,7 +328,7 @@
                                     </svg>
                                 </div>
                                 <span>Eclipse 2026-09-R</span>
-                                
+
                             </div>
                             <div class="resource-actions">
                                 <a href="https://www.eclipse.org/downloads/packages/release/2026-09/r" target="_blank"
@@ -357,16 +358,35 @@
 
     <footer>
         <span data-year></span> CharlyModding
-        <p>
-            <strong>Aviso legal:</strong> Los archivos disponibles para descargar (Forge MDK, Eclipse y
-            Adoptium/OpenJDK)
-            son distribuidos originalmente por sus respectivos desarrolladores. Los enlaces apuntan a copias en Google
-            Drive
-            únicamente para facilitar el acceso, sin modificar su contenido. Todas las licencias y derechos pertenecen a
-            sus
-            respectivos propietarios: Forge (MinecraftForge Team), Eclipse Foundation y Adoptium.
-        </p>
     </footer>
+
+    <!-- Aviso legal animado -->
+    <div class="legal-buddy" id="legalBuddy">
+        <button class="legal-buddy-char" type="button" id="legalToggle" aria-label="Cerrar aviso legal"
+            aria-expanded="true" aria-controls="legalBubble">
+            <span class="legal-buddy-tag" aria-hidden="true">Aviso legal</span>
+            <img src="assets/img/aviso-legal-character.webp" alt="" width="651" height="640" decoding="async">
+        </button>
+
+        <section class="legal-bubble" id="legalBubble" role="region" aria-label="Aviso legal">
+            <div class="legal-bubble-header">
+                <h2 class="legal-bubble-title">Aviso legal</h2>
+                <button class="legal-bubble-close" type="button" id="legalClose" aria-label="Cerrar aviso legal"
+                    hidden>&times;</button>
+            </div>
+            <p class="legal-bubble-text" id="legalText">
+                Los archivos (Forge MDK, Eclipse y Adoptium/OpenJDK) pertenecen a sus respectivos desarrolladores. Los
+                enlaces de Google Drive ofrecen copias sin modificar, como alternativa de descarga cuando los servidores
+                oficiales presentan lentitud o problemas de acceso. Se respetan íntegramente las licencias y los
+                derechos de sus propietarios: MinecraftForge Team, Eclipse Foundation y Adoptium.
+            </p>
+            <div class="legal-bubble-nav" id="legalNav" hidden>
+                <button type="button" id="legalPrev" aria-label="Aviso anterior" disabled>&lsaquo;</button>
+                <div class="legal-dots" id="legalDots" aria-hidden="true"></div>
+                <button type="button" id="legalNext" aria-label="Aviso siguiente">&rsaquo;</button>
+            </div>
+        </section>
+    </div>
 
 </body>
 
