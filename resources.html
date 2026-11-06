@@ -13,6 +13,7 @@
     <title>CharlyModding | Recursos</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="preload" as="image" href="assets/img/skin_closed.webp">
     <script src="assets/js/site.js" defer></script>
     <script src="assets/js/legal-buddy.js" defer></script>
 </head>
@@ -34,8 +35,8 @@
         <main id="main-content">
 
             <header class="page-header">
-                <h1>Recursos para Modding</h1>
-                <p>Herramientas esenciales para crear mods · descarga directa desde Google Drive · compatible solo con
+                <h1 class="animate-fadein">Recursos para Modding</h1>
+                <p class="animate-fadein animate-delay-1">Herramientas esenciales para crear mods · descarga directa desde Google Drive · compatible solo con
                     windows 10/11 x86_64</p>
             </header>
 
@@ -365,7 +366,7 @@
         <button class="legal-buddy-char" type="button" id="legalToggle" aria-label="Cerrar aviso legal"
             aria-expanded="true" aria-controls="legalBubble">
             <span class="legal-buddy-tag" aria-hidden="true">Aviso legal</span>
-            <img src="assets/img/aviso-legal-character.webp" alt="" width="651" height="640" decoding="async">
+            <img id="legalChar" src="assets/img/skin_open.webp" alt="" width="1080" height="1080" decoding="async">
         </button>
 
         <section class="legal-bubble" id="legalBubble" role="region" aria-label="Aviso legal">

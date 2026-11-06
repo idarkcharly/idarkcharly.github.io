@@ -10,6 +10,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const dotsEl = document.getElementById("legalDots");
     const prevBtn = document.getElementById("legalPrev");
     const nextBtn = document.getElementById("legalNext");
+    const charImg = document.getElementById("legalChar");
+
+    const characterSrc = {
+        open: "assets/img/skin_open.webp",
+        closed: "assets/img/skin_closed.webp"
+    };
 
     const pages = [
         "Los archivos para descargar (Forge MDK, Eclipse y Adoptium/OpenJDK) los distribuyen originalmente sus desarrolladores.",
@@ -74,6 +80,11 @@ document.addEventListener("DOMContentLoaded", () => {
         root.classList.toggle("is-collapsed", !isOpen);
         toggle.setAttribute("aria-expanded", String(isOpen));
         toggle.setAttribute("aria-label", isOpen ? "Cerrar aviso legal" : "Abrir aviso legal");
+
+        const nextSrc = isOpen ? characterSrc.open : characterSrc.closed;
+        if (charImg.getAttribute("src") !== nextSrc) {
+            charImg.src = nextSrc;
+        }
 
         if (isOpen) {
             show(index);

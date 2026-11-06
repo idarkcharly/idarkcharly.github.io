@@ -816,9 +816,9 @@ header:not(.page-header) img {
     position: absolute;
     left: 50%;
     top: 0;
-    transform: translate(-50%, calc(-100% - 6px));
+    transform: translate(-60%, calc(-100% + 10px));
     padding: 5px 11px;
-    border-radius: 999px;
+    border-radius:6px;
     background: var(--accent1);
     color: #fff;
     font-size: 0.68rem;
@@ -1134,6 +1134,24 @@ footer p {
 .animate-delay-2 { animation-delay: 0.16s; }
 .animate-delay-3 { animation-delay: 0.24s; }
 
+/* Entrada escalonada de las tarjetas en las páginas internas */
+@keyframes cardFadeIn {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.card-grid .card,
+.card-grid > .state-message {
+    animation: cardFadeIn 0.5s ease backwards;
+    animation-delay: 0.16s;
+}
+
+.card-grid .card:nth-child(2) { animation-delay: 0.22s; }
+.card-grid .card:nth-child(3) { animation-delay: 0.28s; }
+.card-grid .card:nth-child(4) { animation-delay: 0.34s; }
+.card-grid .card:nth-child(5) { animation-delay: 0.4s; }
+.card-grid .card:nth-child(6) { animation-delay: 0.46s; }
+
 /* =====================================================
    RESPONSIVE
    ===================================================== */
@@ -1244,6 +1262,12 @@ footer p {
 
 @media (prefers-reduced-motion: reduce) {
     .legal-bubble { animation: none; }
+
+    .animate-fadein,
+    .card-grid .card,
+    .card-grid > .state-message {
+        animation: none;
+    }
 
     .legal-buddy-char img,
     .legal-buddy-tag,
