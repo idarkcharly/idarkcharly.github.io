@@ -1,0 +1,11 @@
+{
+    "scripts": [
+        {
+            "title": "Previsualizar animación de items",
+            "description": "Script en Python que permite ver cómo se verá la animación de un item en el juego.",
+            "download_url": "https://raw.githubusercontent.com/idarkcharly/charlymodding-tools/main/item_animation_preview.py",
+            "view_url": "https://github.com/idarkcharly/charlymodding-tools/blob/main/item_animation_preview.py",
+            "image": "assets/img/python_code_001.png"
+        }
+    ]
+}

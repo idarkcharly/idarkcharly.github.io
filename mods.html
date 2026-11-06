@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mods creados por CharlyModding con tarjetas, imágenes y enlaces a GitHub.">
+    <meta name="theme-color" content="#8b0010">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="CharlyModding | Mods">
+    <meta property="og:description" content="Mods creados por CharlyModding y publicados en GitHub.">
+    <meta property="og:url" content="https://charlymodding.xyz/mods.html">
+    <title>CharlyModding | Mods</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/site.js" defer></script>
+</head>
+
+<body>
+
+    <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
+
+    <div class="page-content">
+
+        <nav>
+            <a href="index.html">Inicio</a>
+            <a href="resources.html">Recursos</a>
+            <a href="mods.html">Mods</a>
+            <a href="scripts.html">Scripts</a>
+            <a href="about.html">Sobre mí</a>
+        </nav>
+
+        <main id="main-content">
+
+            <header class="page-header">
+                <h1>Mis Mods</h1>
+                <p>Proyectos creados y publicados en GitHub · Minecraft Java / Forge</p>
+            </header>
+
+            <section class="resources">
+                <div class="card-grid" id="mods-container" aria-live="polite">
+                    <!-- Cards generadas desde JSON -->
+                </div>
+            </section>
+
+        </main>
+
+    </div>
+
+    <footer>
+        <span data-year></span> CharlyModding
+    </footer>
+
+    <script>
+        const DOWNLOAD_SVG = `<svg viewBox="0 0 24 24"><path d="M12 16l4-5h-3V4h-2v7H8l4 5zm-7 2v2h14v-2H5z"/></svg>`;
+        const GH_SVG = `<svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12c0 4.4 2.9 8.2 6.8 9.5.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.4-3.4-1.4-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.6.3-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.7 1 .8-.2 1.6-.3 2.4-.3s1.6.1 2.4.3c1.9-1.3 2.7-1 2.7-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.4 4.7-4.6 5 .4.3.7 1 .7 2v2.9c0 .3.2.6.7.5C19.1 20.2 22 16.4 22 12c0-5.5-4.5-10-10-10z"/></svg>`;
+
+        fetch("assets/data/mods.json")
+            .then(res => res.json())
+            .then(data => {
+                const container = document.getElementById("mods-container");
+
+                if (!Array.isArray(data.mods) || data.mods.length === 0) {
+                    container.innerHTML = '<p class="state-message">Todavía no hay mods publicados.</p>';
+                    return;
+                }
+
+                data.mods.forEach(mod => {
+                    const card = document.createElement("div");
+                    card.className = "card";
+
+                    // Thumbnail
+                    if (mod.image) {
+                        const thumbWrap = document.createElement("div");
+                        thumbWrap.className = "mod-thumb";
+                        const img = document.createElement("img");
+                        img.src = mod.image;
+                        img.alt = mod.image_alt || mod.title;
+                        img.loading = "lazy";
+                        thumbWrap.appendChild(img);
+                        card.appendChild(thumbWrap);
+                    }
+
+                    // Tags (opcionales desde JSON)
+                    if (mod.tags && mod.tags.length) {
+                        const meta = document.createElement("div");
+                        meta.className = "mod-meta";
+                        mod.tags.forEach(t => {
+                            const tag = document.createElement("span");
+                            tag.className = "tag tag-" + t.type;
+                            tag.textContent = t.label;
+                            meta.appendChild(tag);
+                        });
+                        card.appendChild(meta);
+                    }
+
+                    // Título
+                    const title = document.createElement("h3");
+                    title.textContent = mod.title;
+
+                    // Descripción
+                    const desc = document.createElement("p");
+                    desc.className = "card-description";
+                    desc.textContent = mod.description;
+
+                    // Acciones
+                    const actions = document.createElement("div");
+                    actions.className = "card-actions";
+
+                    const link = document.createElement("a");
+                    link.href = mod.url;
+                    link.target = "_blank";
+                    link.rel = "noopener noreferrer";
+                    link.className = "download-btn";
+                    link.innerHTML = GH_SVG + " Ver en GitHub";
+
+                    actions.appendChild(link);
+                    card.append(title, desc, actions);
+                    container.appendChild(card);
+                });
+            })
+            .catch(() => {
+                const container = document.getElementById("mods-container");
+                container.innerHTML = '<p class="state-message">No fue posible cargar los mods en este momento.</p>';
+            });
+    </script>
+
+</body>
+
+</html>
