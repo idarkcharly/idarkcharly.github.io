@@ -26,7 +26,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let index = 0;
     let typingTimer = null;
-    let isOpen = true;
+    const storedState = localStorage.getItem("charlymodding-legal-buddy");
+    let isOpen = storedState === null ? !window.matchMedia("(max-width: 600px)").matches : storedState === "open";
 
     pages.forEach(() => dotsEl.appendChild(document.createElement("i")));
 
@@ -76,6 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function setOpen(nextOpen) {
         isOpen = nextOpen;
+        localStorage.setItem("charlymodding-legal-buddy", isOpen ? "open" : "closed");
         bubble.hidden = !isOpen;
         root.classList.toggle("is-collapsed", !isOpen);
         toggle.setAttribute("aria-expanded", String(isOpen));
@@ -121,9 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    show(0);
+    show(index);
 
-    if (window.matchMedia("(max-width: 600px)").matches) {
-        setOpen(false);
-    }
+    setOpen(isOpen);
 });
