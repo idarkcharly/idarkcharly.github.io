@@ -6,6 +6,20 @@
             "download_url": "https://raw.githubusercontent.com/idarkcharly/charlymodding-tools/main/item_animation_preview.py",
             "view_url": "https://github.com/idarkcharly/charlymodding-tools/blob/main/item_animation_preview.py",
             "image": "assets/img/python_code_001.webp"
+        },
+        {
+            "title": "Explorador de código fuente",
+            "description": "Herramienta para buscar, inspeccionar y consultar el código interno de Minecraft y Forge.",
+            "download_url": "https://raw.githubusercontent.com/idarkcharly/forge-mod-template-26.3/main/tools/forge_sources.py",
+            "view_url": "https://github.com/idarkcharly/forge-mod-template-26.3/blob/main/tools/forge_sources.py",
+            "image": "assets/img/python_code_002.webp"
+        },
+        {
+            "title": "AGENTS.md",
+            "description": "Instrucciones y contexto del proyecto para agentes de IA durante el desarrollo de mods de Minecraft Forge.",
+            "download_url": "https://raw.githubusercontent.com/idarkcharly/forge-mod-template-26.3/refs/heads/main/AGENTS.md",
+            "view_url": "https://github.com/idarkcharly/forge-mod-template-26.3/blob/main/AGENTS.md",
+            "image": "assets/img/python_code_002.webp"
         }
     ]
 }
